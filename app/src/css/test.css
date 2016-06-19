@@ -1,0 +1,15 @@
+.cats {
+&-list {
+list-style-type: none;
+.cat {
+margin: 1rem;
+}
+}
+.container & {
+margin: 0;
+}
+}
+
+h1{
+    color: #015;
+}
