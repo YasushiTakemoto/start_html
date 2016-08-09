@@ -6,14 +6,21 @@ var jade = require('gulp-jade-php');
 var postcss = require('gulp-postcss');
 var cssnext = require('gulp-cssnext');
 var notify = require('gulp-notify');
-var concat = require("gulp-concat");
-var uglify = require("gulp-uglify");
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var imagemin = require('gulp-imagemin');
 
 var SortedCSS = [
     'app/src/css/app.css',
     'app/src/css/foundation.css',
     'app/src/css/test.css'
 ];
+
+gulp.task('imagemin', function(){
+    gulp.src('app/src/img/**/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('app/dist/img/'));
+});
 
 gulp.task('css',function(){
     gulp.src(SortedCSS)
@@ -52,4 +59,5 @@ gulp.task('default',function(){
     gulp.watch('app/src/css/*.css',['css']);
     gulp.watch('app/src/jade/*.jade',['jade']);
     gulp.watch('app/src/js/*.js',['js']);
+    gulp.watch('app/src/img/**/*',['imagemin']);
 });
