@@ -9,12 +9,19 @@ var notify = require('gulp-notify');
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 
+var SortedCSS = [
+    'app/src/css/app.css',
+    'app/src/css/foundation.css',
+    'app/src/css/test.css'
+];
+
 gulp.task('css',function(){
-    gulp.src(['app/src/css/*.css'])
+    gulp.src(SortedCSS)
         .pipe(plumber())
         .pipe(postcss([require('postcss-nested')]))
         .pipe(cssnext([require('gulp-cssnext')]))
-        .pipe(gulp.dest('app/dist/css/'))
+        .pipe(concat('style.css'))
+        .pipe(gulp.dest('app/'))
         .pipe(notify('css task finished'))
         .pipe(reload({stream:true}));        
 });

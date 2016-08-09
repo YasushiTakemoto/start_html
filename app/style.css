@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 /**
  * Foundation for Sites by ZURB
@@ -4439,3 +4440,20 @@ table.hover tr:nth-of-type(even):hover {
 .long-delay {
   -webkit-animation-delay: 700ms !important;
           animation-delay: 700ms !important; }
+
+.cats-list {
+    list-style-type: none;
+}
+
+.cats-list .cat {
+    margin: 16px;
+    margin: 1rem;
+}
+
+.container .cats {
+    margin: 0;
+}
+
+h1{
+    color: #019;
+}
