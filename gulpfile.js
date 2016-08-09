@@ -6,6 +6,8 @@ var jade = require('gulp-jade');
 var postcss = require('gulp-postcss');
 var cssnext = require('gulp-cssnext');
 var notify = require('gulp-notify');
+var concat = require("gulp-concat");
+var uglify = require("gulp-uglify");
 
 gulp.task('css',function(){
     gulp.src(['app/src/css/*.css'])
@@ -26,11 +28,21 @@ gulp.task('jade',function(){
         .pipe(reload({stream:true}));
 });
 
+gulp.task('js', function() {
+  return gulp.src('app/src/js/**/*.js')
+    .pipe(plumber())
+    .pipe(uglify())
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('app/dist/js/'))
+    .pipe(notify('js task finished'))
+    .pipe(reload({stream:true}));
+});
+
 gulp.task('default',function(){
     browserSync.init({
         server: "app/"
     });
     gulp.watch('app/src/css/*.css',['css']);
     gulp.watch('app/src/jade/*.jade',['jade']);
-    gulp.watch('app/img/**/*',['img']);
+    gulp.watch('app/src/js/*.js',['js']);
 });
