@@ -19,7 +19,8 @@ var SortedCSS = [
 gulp.task('imagemin', function(){
     gulp.src('app/src/img/**/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('app/dist/img/'));
+        .pipe(gulp.dest('app/dist/img/'))
+        .pipe(reload({stream:true}));  
 });
 
 gulp.task('css',function(){
